@@ -1,0 +1,1 @@
+build:tc --extra_toolchains=//:test_toolchain

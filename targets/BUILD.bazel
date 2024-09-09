@@ -1,0 +1,7 @@
+load("//:rule.bzl", "foo_binary")
+load("//:toolchain.bzl", "has_registered_toolchain")
+
+foo_binary(
+    name = "test_target",
+    target_compatible_with = has_registered_toolchain,
+)

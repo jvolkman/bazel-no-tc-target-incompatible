@@ -1,0 +1,32 @@
+load(":toolchain.bzl", "test_toolchain", "has_registered_test_toolchain_flag_value")
+
+toolchain_type(
+    name = "toolchain_type",
+    visibility = ["//visibility:public"],
+)
+
+test_toolchain(
+    name = "_test_toolchain",
+)
+
+toolchain(
+    name = "test_toolchain",
+    toolchain_type = ":toolchain_type",
+    toolchain = ":_test_toolchain",
+)
+
+has_registered_test_toolchain_flag_value(
+    name = "_has_registered_toolchain_flag",
+)
+
+config_setting(
+    name = "_has_registered_toolchain_setting",
+    flag_values = {
+        ":_has_registered_toolchain_flag": "yes",
+    },
+)
+
+exports_files(
+    ["rule.bzl"],
+    visibility = ["//visibility:public"],
+)
